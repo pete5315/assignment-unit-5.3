@@ -64,43 +64,57 @@ showCollection(findByArtist("Phoebe Bridgers"));
 //- If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
 function search (inputObject) {
     let newArray = []
-    if (inputObject.length===0) {
+    if (inputObject===undefined) {
         return collection;
     }
-    if (inputObject.track!=undefined) {
+    if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
+        for (let x of collection) { //check each album
+            for (let y of x.tracks) { //check each track of each album
+                if (y.name===inputObject.track) { //check only the name, ignore duration
+                    newArray.push(x);
+                }
+            }
+        }
+    } else {
+        for (let x of collection) {
+            let i=0;
+            if (inputObject.artist!=undefined) {
+                if (inputObject.artist===x.artist) {
+                    i++
+                }
+            }
 
+            if (inputObject.album!=undefined) {
+                if (inputObject.album===x.album) {
+                    i++
+                }
+            }
+
+            if (inputObject.yearPublished!=undefined) {
+                if (inputObject.yearPublished===x.yearPublished) {
+                    i++
+                }
+            }
+            if (i===Object.keys(inputObject).length) {
+                newArray.push(x);
+            }
+            
+        }
     }
-    for (let x of collection) {
-        let i=0;
-
-        if (inputObject.artist!=undefined) {
-            if (inputObject.artist===x.artist) {
-                i++
-            }
-        }
-
-        if (inputObject.album!=undefined) {
-            if (inputObject.album===x.album) {
-                i++
-            }
-        }
-
-        if (inputObject.yearPublished!=undefined) {
-            if (inputObject.yearPublished===x.yearPublished) {
-                i++
-            }
-        }
-        if (i===Object.keys(inputObject).length) {
-            newArray.push(x);
-        }
-        
-    }
-
     return newArray;
 }
+console.log("Search for '1999'")
 console.log(search({yearPublished:"1999"}));
+console.log("Search for 'Phoebe Bridgers'")
 console.log(search({artist:"Phoebe Bridgers"}));
-
+console.log("Search for 'Kyoto'")
+console.log(search({track:"Kyoto"}));
+console.log("Search for '2010' and 'Phoebe Bridgers'")
+console.log(search({artist:"Phoebe Bridgers",yearPublished:"2010"}));
+console.log("Search for '2017' and 'Phoebe Bridgers'")
+console.log(search({artist:"Phoebe Bridgers",yearPublished:"2017"}));
+console.log("Search for nothing and return full collection")
+console.log(search());
 
 //- Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
 //- Update the `addToCollection` function to also take an input parameter for the array of tracks.
