@@ -54,7 +54,6 @@ function findByArtist (stringInput) {
         return artistArray;
     }  else {
         return [];
-
     }
 }
 
@@ -90,19 +89,15 @@ function search (inputObject) {
             if (inputObject.artist===x.artist) { //check if artist matches
                 i++;
             }
-
             if (inputObject.album===x.album) {  //check if album matches
                 i++;
             }
-
             if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
                 i++;
             }
-            
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
             }
-            
         }
     }
     return newArray;
