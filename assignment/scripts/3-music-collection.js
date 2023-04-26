@@ -22,6 +22,10 @@ console.log("This is the collection array:");
 console.log(collection);
 //this function will be used to show the collection
 function showCollection (showInput) {
+    if (showInput.length===0) {
+        console.log("The collection has no items.");
+        return [];
+    }
     console.log(`The collection has ${showInput.length} items.`);
     console.log(`The album(s):`);
     for (let x of showInput) {
@@ -53,6 +57,7 @@ function findByArtist (stringInput) {
     }
 }
 //Test the find by artist function.
+console.log("Find by artist tests");
 console.log(`What Joanna Newsom albums are in the collection?`);
 showCollection(findByArtist("Joanna Newsom"));
 console.log(`What Julien Baker albums are in the collection?`);
@@ -80,14 +85,20 @@ function search (inputObject) {
     } else { //otherwise look at the information provided besides track name
         for (let x of collection) {
             let i=0; //iterator to count the matching criteria to ensure all parts are found before adding
-            if (inputObject.artist===x.artist) { //check if artist matches
-                i++;
+            if (inputObject.artist!=undefined) {
+                if (inputObject.artist===x.artist) { //check if artist matches
+                    i++;
+                }
+            }   
+            if (inputObject.album!=undefined) {
+                if (inputObject.album===x.album) {  //check if album matches
+                    i++;
+                }
             }
-            if (inputObject.album===x.album) {  //check if album matches
-                i++;
-            }
-            if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
-                i++;
+            if (inputObject.yearPublished!=undefined) {
+                if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
+                    i++;
+                }
             }
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
@@ -101,6 +112,8 @@ console.log("Search for '1999'");
 console.log(search({yearPublished:"1999"}));
 console.log("Search for 'Phoebe Bridgers'");
 console.log(search({artist:"Phoebe Bridgers"}));
+console.log("Search for 'Julien Baker' and find nothing");
+console.log(search({artist:"Julien Baker"}));
 console.log("Search for 'Kyoto'");
 console.log(search({track:"Kyoto"}));
 console.log("Search for '2010' and 'Phoebe Bridgers'");
