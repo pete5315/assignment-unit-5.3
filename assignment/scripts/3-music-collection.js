@@ -98,6 +98,7 @@ function search (inputObject) {
             if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
                 i++;
             }
+            
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
             }
