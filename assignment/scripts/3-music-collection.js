@@ -69,7 +69,7 @@ showCollection(findByArtist("Phoebe Bridgers"));
 //this function will search for any matching albums with a track search overriding other forms of search
 function search (inputObject) {
     let newArray = [];
-    if (inputObject===undefined) { //check if search was empty
+    if (!inputObject) { //check if search was empty
         return collection;
     }
     if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
@@ -87,22 +87,16 @@ function search (inputObject) {
     } else { //otherwise look at the information provided besides track name
         for (let x of collection) {
             let i=0; //iterator to count the matching criteria to ensure all parts are found before adding
-            if (inputObject.artist!=undefined) { //will skip if no artist provided
-                if (inputObject.artist===x.artist) {
-                    i++;
-                }
+            if (inputObject.artist===x.artist) { //check if artist matches
+                i++;
             }
 
-            if (inputObject.album!=undefined) {  //will skip if no album is found
-                if (inputObject.album===x.album) {
-                    i++;
-                }
+            if (inputObject.album===x.album) {  //check if album matches
+                i++;
             }
 
-            if (inputObject.yearPublished!=undefined) { //will skip if no year published is found
-                if (inputObject.yearPublished===x.yearPublished) {
-                    i++;
-                }
+            if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
+                i++;
             }
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
