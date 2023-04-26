@@ -6,6 +6,7 @@ function addToCollection (titleInput, artistInput, yearPublishedInput, tracksInp
     collection.push({title: titleInput, artist: artistInput, yearPublished: yearPublishedInput, tracks:tracksInput});
     console.log(`Just added:`);
     console.log(collection[collection.length-1]);
+    return collection[collection.length-1];
 }
 //add albums to array
 addToCollection("Ys", "Joanna Newsom", "2006",[{name:"Emily", duration:'12:07'},{name:"Monkey & Bear", duration: "9:29"},{name:	"Sawdust & Diamonds", duration:"9:54"},{name:"Only Skin", duration:"16:53"},{name:"Cosmia", duration:"7:15"}]);
@@ -25,8 +26,13 @@ console.log(collection);
 function showCollection (showInput) {
     console.log(`The collection has ${showInput.length} items.`);
     console.log(`The album(s):`);
-    for (let x=0; x<showInput.length; x++) {
-        console.log(`${showInput[x].title} by ${showInput[x].artist}, released in ${showInput[x].yearPublished}`);
+    for (let x of showInput) {
+        console.log(`${x.title} by ${x.artist}, published in ${x.yearPublished}`);
+        let i=0;
+        for (let y of x.tracks) {
+            i++;
+            console.log(`${i}.  ${y.name}: ${y.duration}`);
+        }
     }
 }
 
@@ -69,8 +75,12 @@ function search (inputObject) {
     if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
         for (let x of collection) { //check each album
             for (let y of x.tracks) { //check each track of each album
+                let sameName=0
                 if (y.name===inputObject.track) { //check only the name, ignore duration
-                    newArray.push(x);
+                    if (sameName===0) { //if an album has two tracks with the same name, we don't want to add it twice
+                        newArray.push(x);
+                        sameName++;
+                    }
                 }
             }
         }
