@@ -17,11 +17,9 @@ addToCollection("Ágætis byrjun", "Sigur Rós", "1999",[{name:"Intro",duration:
 addToCollection("Freshman Year", "Hop Along, Queen Ansleis", "2005",[{name:"-",duration:"0:24"},{name:"Sirens",duration:"3:44"},{name:"For Sebastian From a Friend",duration:"3:55"},{name:"Elizabeth & Elizabeth",duration:"2:10"},{name:"The Cactus",duration:"3:48"},{name:"Failure",duration:"2:33"},{name:"The Big House",duration:"3:45"},{name:"Of My Brothers and the Bear",duration:"3:47"},{name:"Organ Song",duration:"1:48"},{name:"Hi Too Loo Rye",duration:"2:48"},{name:"Laments of a Mattress",duration:"6:03"},{name:"Bruno is Orange",duration:"3:22"},{name:"Bride and Groom Hot Air Balloon",duration:"3:55"},{name:"The Goose & the Wren",duration:"7:33"},{name:"Workers",duration:"3:14"},{name:"A Drummer's Arm",duration:"2:22"}]);
 addToCollection("When your Heartstrings Break", "Beulah", "1999",[{name:"Score from Augusta",duration:"2:54"},{name:"Sunday Under Glass",duration:"2:54"},{name:"Matter vs. Space",duration:"3:00"},{name:"Emma Blowgun's Last Stand",duration:"5:21"},{name:"Calm Go the Wild Seas",duration:"3:01"},{name:"Ballad of the Lonely Argonaut",duration:"2:29"},{name:"Comrade's Twenty Sixth",duration:"1:53"},{name:"The Aristocratic Swells",duration:"2:55"},{name:"Silverado Days",duration:"3:39"},{name:"Warmer",duration:"2:56"},{name:"If We Can Land a Man on the Moon, Surely I Can Win Your Heart",duration:"3:17"}]);
 addToCollection("Stranger in the Alps", "Phoebe Bridgers", "2017",[{name:"Smoke Signals",duration:"5:24"},{name:"Motion Sickness",duration:"3:49"},{name:"Funeral",duration:"3:52"},{name:"Demi Moore",duration:"3:18"},{name:"Scott Street",duration:"5:05"},{name:"Killer",duration:"3:09"},{name:"Georgia",duration:"4:07"},{name:"Chelsea",duration:"4:42"},{name:"Would You Rather",duration:"3:19"},{name:"You Missed My Heart",duration:"6:57"},{name:"Smoke Signals (Reprise)",duration:"0:33"}])
-
 //log the collection array
 console.log("This is the collection array:");
 console.log(collection);
-
 //this function will be used to show the collection
 function showCollection (showInput) {
     console.log(`The collection has ${showInput.length} items.`);
@@ -35,10 +33,8 @@ function showCollection (showInput) {
         }
     }
 }
-
 //test the show collection function
 showCollection(collection);
-
 //this function will find all objects in the collection that have the inputted artist trait
 function findByArtist (stringInput) {
     let artistArray=[];
@@ -56,7 +52,6 @@ function findByArtist (stringInput) {
         return [];
     }
 }
-
 //Test the find by artist function.
 console.log(`What Joanna Newsom albums are in the collection?`);
 showCollection(findByArtist("Joanna Newsom"));
@@ -64,7 +59,6 @@ console.log(`What Julien Baker albums are in the collection?`);
 showCollection(findByArtist("Julien Baker"));
 console.log(`What Phoebe Bridgers albums are in the collection?`);
 showCollection(findByArtist("Phoebe Bridgers"));
-
 //this function will search for any matching albums with a track search overriding other forms of search
 function search (inputObject) {
     let newArray = [];
@@ -102,7 +96,6 @@ function search (inputObject) {
     }
     return newArray;
 }
-
 //Test the search function for various inputs that have one or more possible matches
 console.log("Search for '1999'");
 console.log(search({yearPublished:"1999"}));
