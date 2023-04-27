@@ -22,7 +22,7 @@ console.log("This is the collection array:");
 console.log(collection);
 //this function will be used to show the collection
 function showCollection (showInput) {
-    if (showInput.length===0) {
+    if (showInput.length===0) {  //check if the collection is blank
         console.log("The collection has no items.");
         return [];
     }
@@ -66,14 +66,14 @@ console.log(`What Phoebe Bridgers albums are in the collection?`);
 showCollection(findByArtist("Phoebe Bridgers"));
 //this function will search for any matching albums with a track search overriding other forms of search
 function search (inputObject) {
-    let newArray = [];
+    let newArray = []; //establishes the empty array that any search hits will be added to
     if (!inputObject) { //check if search was empty
         return collection;
     }
     if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
         for (let x of collection) { //check each album
             for (let y of x.tracks) { //check each track of each album
-                let sameName=0
+                let sameName=0;
                 if (y.name===inputObject.track) { //check only the name, ignore duration
                     if (sameName===0) { //if an album has two tracks with the same name, we don't want to add it twice
                         newArray.push(x);
@@ -85,21 +85,12 @@ function search (inputObject) {
     } else { //otherwise look at the information provided besides track name
         for (let x of collection) {
             let i=0; //iterator to count the matching criteria to ensure all parts are found before adding
-            if (inputObject.artist!=undefined) {
-                if (inputObject.artist===x.artist) { //check if artist matches
-                    i++;
-                }
-            }   
-            if (inputObject.title!=undefined) {
-                if (inputObject.title===x.title) {  //check if album matches
+            for (let y of Object.keys(inputObject)) {
+                    if (inputObject[y]===x[y]) {
                     i++;
                 }
             }
-            if (inputObject.yearPublished!=undefined) {
-                if (inputObject.yearPublished===x.yearPublished) { //check if year published matches
-                    i++;
-                }
-            }
+
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
             }
