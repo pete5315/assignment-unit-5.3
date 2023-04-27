@@ -86,11 +86,10 @@ function search (inputObject) {
         for (let x of collection) {
             let i=0; //iterator to count the matching criteria to ensure all parts are found before adding
             for (let y of Object.keys(inputObject)) {
-                    if (inputObject[y]===x[y]) {
+                if (inputObject[y]===x[y]) {
                     i++;
                 }
             }
-
             if (i===Object.keys(inputObject).length) { //if all non-track inputs have matches in the collection
                 newArray.push(x);
             }
