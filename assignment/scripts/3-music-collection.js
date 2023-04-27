@@ -90,8 +90,8 @@ function search (inputObject) {
                     i++;
                 }
             }   
-            if (inputObject.album!=undefined) {
-                if (inputObject.album===x.album) {  //check if album matches
+            if (inputObject.title!=undefined) {
+                if (inputObject.title===x.title) {  //check if album matches
                     i++;
                 }
             }
@@ -122,3 +122,5 @@ console.log("Search for '2017' and 'Phoebe Bridgers'");
 console.log(search({artist:"Phoebe Bridgers",yearPublished:"2017"}));
 console.log("Search for nothing and return full collection");
 console.log(search());
+console.log("Search for Helioself");
+console.log(search({title: "Helioself"}));
