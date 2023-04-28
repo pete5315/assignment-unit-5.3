@@ -64,14 +64,17 @@ console.log(`What Julien Baker albums are in the collection?`);
 showCollection(findByArtist("Julien Baker"));
 console.log(`What Phoebe Bridgers albums are in the collection?`);
 showCollection(findByArtist("Phoebe Bridgers"));
-//this function will search for any matching albums with a track search overriding other forms of search
-function search (inputObject) {
+//this function will search for any matching albums with a track search overriding other forms of search--it will default to the collection defined above, but a different collection could be input
+function search (inputObject, inputCollection) {
+    if (!inputCollection) { //check to see if a collection was input--if not, use the default collection parameter
+        inputCollection=collection;
+    }
     if (!inputObject) { //check if search was empty
-        return collection;
+        return inputCollection;
     }
     let newArray = []; //establishes the empty array that any search hits will be added to
     if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
-        for (let x of collection) { //check each album
+        for (let x of inputCollection) { //check each album
             for (let y of x.tracks) { //check each track of each album
                 let sameName=0;
                 if (y.name===inputObject.track) { //check only the name, ignore duration
@@ -83,10 +86,10 @@ function search (inputObject) {
             }
         }
     } else { //otherwise look at the information provided besides track name
-        for (let x of collection) {
+        for (let x of inputCollection) { //check each album in the collection
             let i=0; //iterator to count the matching criteria to ensure all parts are found before adding
-            for (let y of Object.keys(inputObject)) {
-                if (inputObject[y]===x[y]) {
+            for (let y of Object.keys(inputObject)) { //check each key of the parameter
+                if (inputObject[y]===x[y]) { //check if the key matches the album
                     i++;
                 }
             }
@@ -112,5 +115,7 @@ console.log("Search for '2017' and 'Phoebe Bridgers'");
 console.log(search({artist:"Phoebe Bridgers",yearPublished:"2017"}));
 console.log("Search for nothing and return full collection");
 console.log(search());
-console.log("Search for Helioself");
-console.log(search({title: "Helioself"}));
+console.log("Search for Helioself using the collection parameter")
+console.log(search({title: "Helioself"}, collection));
+console.log("Search for Helioself not using the collection parameter");
+console.log(search({title: "Helioself"},[]));
