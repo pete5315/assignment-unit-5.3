@@ -66,10 +66,10 @@ console.log(`What Phoebe Bridgers albums are in the collection?`);
 showCollection(findByArtist("Phoebe Bridgers"));
 //this function will search for any matching albums with a track search overriding other forms of search
 function search (inputObject) {
-    let newArray = []; //establishes the empty array that any search hits will be added to
     if (!inputObject) { //check if search was empty
         return collection;
     }
+    let newArray = []; //establishes the empty array that any search hits will be added to
     if (Object.keys(inputObject).includes("track")) { //check if inputObject has a track property
         for (let x of collection) { //check each album
             for (let y of x.tracks) { //check each track of each album
