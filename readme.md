@@ -1,3 +1,6 @@
+This was a homework assignment I did towards the start of my time at Prime. It was the first time I felt I had written code that didn't just look like everyone else's and I am very proud of that turning point.
+
+
 # Unit 5, Part 3: Music Collection
 
 This unit, we'll be exploring objects by creating an application to help maintain a record collection. We will be creating objects using `object literal` syntax.
